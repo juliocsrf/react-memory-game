@@ -30,7 +30,16 @@ const App = () => {
     }, [playing, timeElapsed]);
 
     const handleItemClick = (index: number) => {
-        console.log(index);
+        if (playing && index !== null && shownCount < 2) {
+            const tmpGrid = [...gridItems];
+
+            if (!tmpGrid[index].permanentShown && !tmpGrid[index].shown) {
+                tmpGrid[index].shown = true;
+                setShownCount(shownCount + 1);
+            }
+
+            setGridItems(tmpGrid);
+        }
     };
 
     const resetAndCreateGrid = () => {
