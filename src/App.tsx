@@ -4,6 +4,7 @@ import logoImage from './assets/devmemory_logo.png';
 import restartIcon from './svgs/restart.svg';
 import InfoItem from './components/InfoItem';
 import Button from './components/Button';
+import GridItem from './components/GridItem';
 import { GridItemType } from './types/GridItemType';
 import { items } from './data/items';
 
@@ -17,6 +18,8 @@ const App = () => {
     useEffect(() => {
         resetAndCreateGrid();
     }, []);
+
+    const handleItemClick = (index: number) => {};
 
     const resetAndCreateGrid = () => {
         setTimeElepsed(0);
@@ -62,7 +65,11 @@ const App = () => {
             </C.Info>
 
             <C.GridArea>
-                <C.Grid></C.Grid>
+                <C.Grid>
+                    {gridItems.map((item, index) => (
+                        <GridItem key={index} item={item} onClick={() => handleItemClick(index)} />
+                    ))}
+                </C.Grid>
             </C.GridArea>
         </C.Container>
     );
